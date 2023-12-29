@@ -11,11 +11,11 @@
     <body>
         <div class="container">
             <h1>Decks</h1>
-            <button class="button">Add a Deck</button>
+            <a class="button button-add" href="/addDeck">Add a Deck</a>
             <div id="todo-container">
                 <c:forEach items="${decks}" var="decks">
                     <div class="todo-item">
-                        <p class="todo-text">${decks.name}</p>
+                        <p class="todo-text">${decks.title}</p>
                         <div class="actions">
                             <button class="button button-edit">Edit</button>
                             <button class="button button-delete">Delete</button>

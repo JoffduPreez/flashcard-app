@@ -10,13 +10,12 @@ public class Deck {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String name;
+    private String title;
     private String description;
 
-    public Deck(int id, String name, String description) {
+    public Deck(String title, String description) {
         super();
-        this.id = id;
-        this.name = name;
+        this.title = title;
         this.description = description;
     }
 
@@ -32,12 +31,12 @@ public class Deck {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return title;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getDescription() {
@@ -52,7 +51,7 @@ public class Deck {
     public String toString() {
         return "Deck{" +
                 "id=" + id +
-                ", name='" + name + '\'' +
+                ", title='" + title + '\'' +
                 ", description='" + description + '\'' +
                 '}';
     }

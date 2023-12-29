@@ -16,17 +16,17 @@ public class ApplicationCmdLineRunner implements CommandLineRunner {
     @Autowired
     private JpaAccess jpaAccess;
     public void run(String... arg0) throws Exception {
-        Deck deck = new Deck(1, "MATH*1200 reivew", "Test description");
-        jpaAccess.save(deck);
-        log.info("New Deck is created : " + deck);
-
-        Deck deck2 = new Deck(2, "Coding flashcards", "Coding flashcards description");
-        jpaAccess.save(deck2);
-        log.info("Deck 2 created : " + deck2);
-
-        Deck deck3 = new Deck(3, "Keg menu flashcards", "Keg menu flashcards description");
-        jpaAccess.save(deck3);
-        log.info("Deck 3 created : " + deck3);
+//        Deck deck = new Deck("MATH*1200 reivew", "Test description");
+//        jpaAccess.save(deck);
+//        log.info("New Deck is created : " + deck);
+//
+//        Deck deck2 = new Deck(2, "Coding flashcards", "Coding flashcards description");
+//        jpaAccess.save(deck2);
+//        log.info("Deck 2 created : " + deck2);
+//
+//        Deck deck3 = new Deck(3, "Keg menu flashcards", "Keg menu flashcards description");
+//        jpaAccess.save(deck3);
+//        log.info("Deck 3 created : " + deck3);
 
     }
 }
