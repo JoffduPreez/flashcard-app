@@ -1,7 +1,6 @@
 package com.joffredupreez.flashcardapp;
 
-import com.joffredupreez.flashcardapp.deck.Deck;
-import com.joffredupreez.flashcardapp.service.JpaAccess;
+import com.joffredupreez.flashcardapp.service.DeckJpaAccess;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.slf4j.Logger;
@@ -14,7 +13,7 @@ public class ApplicationCmdLineRunner implements CommandLineRunner {
             LoggerFactory.getLogger(ApplicationCmdLineRunner.class);
 
     @Autowired
-    private JpaAccess jpaAccess;
+    private DeckJpaAccess jpaAccess;
     public void run(String... arg0) throws Exception {
 //        Deck deck = new Deck("MATH*1200 reivew", "Test description");
 //        jpaAccess.save(deck);

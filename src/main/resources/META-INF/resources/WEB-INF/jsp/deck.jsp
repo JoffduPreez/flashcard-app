@@ -11,19 +11,21 @@
     <body>
         <div class="container">
             <h1>Decks</h1>
-            <a class="button button-add" href="/addDeck">Add a Deck</a>
+            <a class="button button-add" href="${pageContext.request.contextPath}/addDeck">Add a Deck</a>
             <div id="todo-container">
                 <c:forEach items="${decks}" var="decks">
                     <div class="todo-item">
                         <p class="todo-text">${decks.title}</p>
                         <div class="actions">
                             <button class="button button-edit">Edit</button>
-                            <button class="button button-delete">Delete</button>
+                            <!-- <a class="button button-delete" href="${pageContext.request.contextPath}/deleteDeck?id=${decks.id}">Delete</a> -->
+                            <button class="button button-delete" data-deck-id=${decks.id}>Delete</button>
                         </div>
                     </div>
                 </c:forEach>
             </div>
         </div>
-
     </body>
+
+    <script src="${pageContext.request.contextPath}/js/deck.js"></script>
 </html>
