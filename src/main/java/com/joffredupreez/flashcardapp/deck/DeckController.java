@@ -19,21 +19,31 @@ import java.util.Optional;
 @Controller
 public class DeckController {
     @Autowired
-//    private DeckJpaAccess jpaAccess;
     private DeckService deckService;
+
 
     @RequestMapping(path = "deck", method = RequestMethod.GET)
     public String loadDeckPage (ModelMap model) {
-        List<Deck> decks = deckService.getAll();
+        List<Deck> decks = deckService.getAllDecks();
         model.addAttribute("decks", decks);
 
         return "deck";
     }
 
+
     @RequestMapping(path = "addDeck", method = RequestMethod.GET)
     public String loadAddDeckPage () {
         return "addDeck";
     }
+
+
+    @RequestMapping(path = "editDeck", method = RequestMethod.GET)
+    public String loadEditDeckPage (ModelMap model, @RequestParam Long id) {
+        model.addAttribute("deck", deckService.getDeck(id));
+
+        return "editDeck";
+    }
+
 
     @RequestMapping(path = "addDeck", method = RequestMethod.POST)
     public String createNewDeck (@RequestBody MultiValueMap<String, String> formData) {
@@ -42,10 +52,19 @@ public class DeckController {
         return "redirect:deck";
     }
 
+
+    @RequestMapping(path = "editDeck", method = RequestMethod.PUT)
+    public ResponseEntity<Void> editDeck (@RequestBody Deck deck) {
+        deckService.editDeck(deck.getId(), deck.getTitle(), deck.getDescription());
+
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+
     @RequestMapping(path = "deleteDeck", method = RequestMethod.DELETE)
     public ResponseEntity<Void> deleteDeck (@RequestParam Long id) {
         System.out.println("id = " + id);
-        deckService.deleteById(id);
+        deckService.deleteDeck(id);
 
         return new ResponseEntity<>(HttpStatus.OK);
     }

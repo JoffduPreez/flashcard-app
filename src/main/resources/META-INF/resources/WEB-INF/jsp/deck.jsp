@@ -17,8 +17,7 @@
                     <div class="todo-item">
                         <p class="todo-text">${decks.title}</p>
                         <div class="actions">
-                            <button class="button button-edit">Edit</button>
-                            <!-- <a class="button button-delete" href="${pageContext.request.contextPath}/deleteDeck?id=${decks.id}">Delete</a> -->
+                            <a class="button button-edit" href="${pageContext.request.contextPath}/editDeck?id=${decks.id}">Edit</a>
                             <button class="button button-delete" data-deck-id=${decks.id}>Delete</button>
                         </div>
                     </div>

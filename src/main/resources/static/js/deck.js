@@ -1,18 +1,18 @@
-
 // Add event listener to the delete buttons
 document.addEventListener('DOMContentLoaded', function() {
-    var deleteButtons = document.querySelectorAll('.button-delete');
+    var deckDeleteButtons = document.querySelectorAll('.button-delete');
 
     // Add an event listener to each button
-    deleteButtons.forEach(function(button) {
+    deckDeleteButtons.forEach(function(button) {
         button.addEventListener('click', function(event) {
             var deckId = button.getAttribute('data-deck-id');
-            deleteDeckById(deckId);
+            deleteDeck(deckId);
         });
     });
 });
 
-function deleteDeckById(deckId){
+
+function deleteDeck(deckId){
     var basePath = getBasePath();
 
     fetch(basePath + '/deleteDeck?id=' + deckId, {
@@ -34,8 +34,9 @@ function deleteDeckById(deckId){
 
 }
 
+
 function getBasePath() {
     var protocol = window.location.protocol;
-    var host = window.location.host; // This includes hostname and port if the port is included
+    var host = window.location.host;
     return protocol + '//' + host;
 }

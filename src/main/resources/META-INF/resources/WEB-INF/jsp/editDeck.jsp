@@ -1,3 +1,5 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -10,16 +12,17 @@
 
         <div class="container">
             <h1>Add a New Flashcard Deck</h1>
-            <form id="newDeckForm" action="/addDeck" method="post">
+            <form id="editDeckForm" method="post">
                 <label for="title">Title:</label>
-                <input type="text" id="title" name="title" required>
-
+                <input type="text" id="title" name="title" value="${deck.title}" required>
+                
                 <label for="description">Description:</label>
-                <textarea id="description" name="description" rows="4" required></textarea>
+                <textarea id="description" name="description" rows="4" required>${deck.description}</textarea>
 
-                <button type="submit">Add Deck</button>
+                <button type="submit" id="submitBtn" data-deck-id=${deck.id}>Save Deck</button>
             </form>
         </div>
-
     </body>
+
+    <script src="${pageContext.request.contextPath}/js/editDeck.js"></script>
 </html>
