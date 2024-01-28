@@ -16,7 +16,7 @@
     <main>
         <header>
             <p class="title">Flash Focus</p>
-            <button id="switch-login-register" class="button">Sign Up</button>
+            <a id="switch-login-register" class="button" href="/register">Sign Up</a>
         </header>
 
         <section id="content">
@@ -28,14 +28,14 @@
 
                 <form action="/login" method="post">
                     <div class="group">      
-                        <input type="text" required>
+                        <input type="text" name="username"required>
                         <span class="highlight"></span>
                         <span class="bar"></span>
                         <label>Username</label>
                     </div>
                         
                     <div class="group">
-                        <input type="password" required>
+                        <input type="password" name="password"required>
                         <span class="highlight"></span>
                         <span class="bar"></span>
                         <label>Password</label>
