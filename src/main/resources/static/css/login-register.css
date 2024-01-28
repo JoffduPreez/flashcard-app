@@ -1,0 +1,209 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    background-color: #7286D3;
+    padding: 20% 20%;
+    max-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Inter", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-variation-settings:
+      "slnt" 0;
+    color: #333;
+}
+
+main {
+    background-color: #fcf2de;
+    display: flex;
+    flex-direction: column;
+    padding: 5% 7%;
+    border-radius: 20px;
+    box-shadow: 5px 5px 3px 3px rgba(0, 0, 0, 0.3);
+}
+
+header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 3%;
+}
+
+img {
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+label {
+    display: block;
+    font-weight: 600;
+}
+
+#switch-login-register {
+    padding: 0 3%;
+}
+
+#content {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+#column-1 {
+    width: 60%;
+}
+
+#column-2 {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    width: 40%;
+}
+
+#text-content {
+    margin-bottom: 7%;
+}
+
+.title {
+    font-weight: 400;
+    font-size: 45px;
+    font-family: "Itim", cursive;
+    font-style: normal;
+}
+
+.sub-title {
+    font-weight: 600;
+    font-size: 30px;
+}
+
+.column {
+    width: 50%;
+}
+
+.button {
+    background-color: #333;
+    color: white;
+    font-size: 17px;
+    font-weight: 500;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.button:hover {
+    background: #7286D3;
+}
+
+/* form starting stylings ------------------------------- */
+.group 			  { 
+    position:relative; 
+    margin-bottom:7%; 
+}
+
+input {
+    font-size:15px;
+    padding:10px 10px 10px 5px;
+    display:block;
+    width:75%;
+    border:none;
+    border-bottom:1px solid #333;
+    background-color: #fcf2de;
+}
+
+input:focus {
+    outline:none;
+}
+
+/* LABEL ======================================= */
+label {
+    color:#999;
+    font-size:15px;
+    font-weight:normal;
+    position:absolute;
+    pointer-events:none;
+    /* left:5px; */
+    top:10px;
+    transition:0.2s ease all; 
+    -moz-transition:0.2s ease all; 
+    -webkit-transition:0.2s ease all;
+}
+  
+/* active state */
+input:focus ~ label, input:valid ~ label {
+    top:-20px;
+    color:#333;
+}
+  
+/* BOTTOM BARS ================================= */
+.bar 	{
+    position:relative; display:block; width:75%;
+}
+
+.bar:before, .bar:after 	{
+    content:'';
+    height:2px; 
+    width:0;
+    bottom:1px; 
+    position:absolute;
+    background:#333;
+    transition:0.2s ease all; 
+    -moz-transition:0.2s ease all; 
+    -webkit-transition:0.2s ease all;
+}
+
+.bar:before {
+    left:50%;
+}
+
+.bar:after {
+    right:50%; 
+}
+  
+/* active state */
+input:focus ~ .bar:before, input:focus ~ .bar:after {
+    width:50%;
+}
+
+/* HIGHLIGHTER ================================== */
+.highlight {
+    position:absolute;
+    height:60%; 
+    width:100px; 
+    top:25%; 
+    left:0;
+    pointer-events:none;
+    opacity:0.5;
+}
+  
+/* active state */
+input:focus ~ .highlight {
+    -webkit-animation:inputHighlighter 0.3s ease;
+    -moz-animation:inputHighlighter 0.3s ease;
+    animation:inputHighlighter 0.3s ease;
+}
+  
+/* ANIMATIONS ================ */
+@-webkit-keyframes inputHighlighter {
+    from { background:#333; }
+    to 	{ width:0; background:transparent; }
+}
+
+@-moz-keyframes inputHighlighter {
+    from { background:#333; }
+    to 	{ width:0; background:transparent; }
+}
+
+@keyframes inputHighlighter {
+    from { background:#333; }
+    to 	{ width:0; background:transparent; }
+}
