@@ -6,7 +6,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Flashcard Decks</title>
-        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/deck.css"/>
+        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/decks.css"/>
     </head>
     <body>
         <div class="container">
@@ -26,5 +26,5 @@
         </div>
     </body>
 
-    <script src="${pageContext.request.contextPath}/js/deck.js"></script>
+    <script src="${pageContext.request.contextPath}/js/decks.js"></script>
 </html>
