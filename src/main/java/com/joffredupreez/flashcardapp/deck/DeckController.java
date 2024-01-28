@@ -18,12 +18,12 @@ public class DeckController {
     @Autowired
     private DeckService deckService;
 
-    @RequestMapping(path = "deck", method = RequestMethod.GET)
+    @RequestMapping(path = "decks", method = RequestMethod.GET)
     public String loadDeckPage (ModelMap model) {
         List<Deck> decks = deckService.getAllDecks();
         model.addAttribute("decks", decks);
 
-        return "deck";
+        return "decks";
     }
 
 
