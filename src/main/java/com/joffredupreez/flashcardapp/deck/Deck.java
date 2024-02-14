@@ -12,6 +12,7 @@ public class Deck {
     private Long id;
     private String title;
     private String description;
+//    private Long userId;
 
     public Deck(String title, String description) {
         super();

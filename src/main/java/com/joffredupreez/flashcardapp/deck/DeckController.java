@@ -45,7 +45,7 @@ public class DeckController {
     public String createNewDeck (@RequestBody MultiValueMap<String, String> formData) {
         deckService.createDeck(formData.getFirst("title"), formData.getFirst("description"));
 
-        return "redirect:deck";
+        return "redirect:decks";
     }
 
 
