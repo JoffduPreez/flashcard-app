@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FlashFocus</title>
-    <link rel="stylesheet" th:href="@{/css/login-register.css}"/>
+    <link rel="stylesheet" th:href="@{/css/login-register.css}" href="/static/css/login-register.css"/>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
@@ -14,7 +14,7 @@
     <main>
         <header>
             <p class="title">Flash Focus</p>
-            <a id="switch-login-register" class="button" href="/register">Sign Up</a>
+            <a id="switch-login-register" class="button" th:href="@{/register}">Sign Up</a>
         </header>
 
         <section id="content">

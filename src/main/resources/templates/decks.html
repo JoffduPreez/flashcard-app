@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Flashcard Decks</title>
+        <link rel="stylesheet" th:href="@{/css/decks.css}" type="text/css"/>
+    </head>
+    <body>
+        <div class="container">
+            <h1>Decks</h1>
+            <a class="button button-add" th:href="@{/addDeck}">Add a Deck</a>
+            <div id="todo-container">
+                <div th:each="deck : ${decks}" class="todo-item">
+                    <p class="todo-text" th:text="${deck.title}"></p>
+                    <div class="actions">
+                        <a class="button button-edit" th:href="@{/editDeck(id=${deck.id})}">Edit</a>
+                        <button class="button button-delete" th:attr="data-deck-id=${deck.id}">Delete</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script th:src="@{/js/decks.js}"></script>
+    </body>
+</html>

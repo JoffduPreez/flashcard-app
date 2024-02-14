@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Add New Flashcard Deck</title>
+        <link rel="stylesheet" th:href="@{/css/deckForm.css}" type="text/css"/>
+    </head>
+    <body>
+
+        <div class="container">
+            <h1>Add a New Flashcard Deck</h1>
+            <form id="editDeckForm" th:action="@{/deck/save}" method="post">
+                <label for="title">Title:</label>
+                <input type="text" id="title" name="title" th:value="${deck.title}" required>
+
+                <label for="description">Description:</label>
+                <textarea id="description" name="description" rows="4" required th:text="${deck.description}"></textarea>
+
+                <button type="submit" id="submitBtn" th:attr="data-deck-id=${deck.id}">Save Deck</button>
+            </form>
+        </div>
+    </body>
+
+    <script th:src="@{/js/editDeck.js}"></script>
+</html>
