@@ -1,4 +1,4 @@
-package com.joffredupreez.flashcardapp.user;
+package com.joffredupreez.flashcardapp.model;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

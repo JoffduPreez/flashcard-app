@@ -1,8 +1,8 @@
 package com.joffredupreez.flashcardapp;
 
-import com.joffredupreez.flashcardapp.service.DeckJpaAccess;
-import com.joffredupreez.flashcardapp.service.UserJpaAccess;
-import com.joffredupreez.flashcardapp.user.User;
+import com.joffredupreez.flashcardapp.respository.DeckRepository;
+import com.joffredupreez.flashcardapp.respository.UserRepository;
+import com.joffredupreez.flashcardapp.model.User;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -17,10 +17,10 @@ public class ApplicationCmdLineRunner implements CommandLineRunner {
             LoggerFactory.getLogger(ApplicationCmdLineRunner.class);
 
     @Autowired
-    private DeckJpaAccess jpaAccess;
+    private DeckRepository jpaAccess;
     
     @Autowired
-    private UserJpaAccess userAccess;
+    private UserRepository userAccess;
 
     @Autowired
     private PasswordEncoder encoder;

@@ -1,5 +1,6 @@
-package com.joffredupreez.flashcardapp.user;
+package com.joffredupreez.flashcardapp.controller;
 
+import com.joffredupreez.flashcardapp.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;

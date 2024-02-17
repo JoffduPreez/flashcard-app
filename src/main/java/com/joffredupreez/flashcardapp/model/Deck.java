@@ -1,4 +1,4 @@
-package com.joffredupreez.flashcardapp.deck;
+package com.joffredupreez.flashcardapp.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

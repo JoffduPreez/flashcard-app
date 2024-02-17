@@ -1,5 +1,7 @@
-package com.joffredupreez.flashcardapp.deck;
+package com.joffredupreez.flashcardapp.controller;
 
+import com.joffredupreez.flashcardapp.model.Deck;
+import com.joffredupreez.flashcardapp.service.DeckService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -1,7 +1,8 @@
-package com.joffredupreez.flashcardapp.deck;
+package com.joffredupreez.flashcardapp.service;
 
-import com.joffredupreez.flashcardapp.service.DeckJpaAccess;
+import com.joffredupreez.flashcardapp.model.Deck;
 
+import com.joffredupreez.flashcardapp.respository.DeckRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,17 +14,17 @@ import java.util.Optional;
 @Component
 public class DeckService {
     @Autowired
-    private DeckJpaAccess jpaAccess;
-    private Logger logger = LoggerFactory.getLogger(DeckService.class);
+    private DeckRepository deckRepository;
+    private final Logger logger = LoggerFactory.getLogger(DeckService.class);
 
 
     public List<Deck> getAllDecks() {
-        return jpaAccess.findAll();
+        return deckRepository.findAll();
     }
 
 
     public Deck getDeck(Long id) {
-        Optional<Deck> optionalDeck = jpaAccess.findById(id);
+        Optional<Deck> optionalDeck = deckRepository.findById(id);
         Deck deck = null;
         if (optionalDeck.isPresent()) {
             deck = optionalDeck.get();
@@ -36,7 +37,7 @@ public class DeckService {
 
 
     public void createDeck(String title, String description) {
-        jpaAccess.save(new Deck(title, description));
+        deckRepository.save(new Deck(title, description));
     }
 
 
@@ -44,11 +45,11 @@ public class DeckService {
         Deck deck = getDeck(id);
         deck.setTitle(title);
         deck.setDescription(description);
-        jpaAccess.save(deck);
+        deckRepository.save(deck);
     }
 
 
     public void deleteDeck(Long id) {
-        jpaAccess.deleteById(id);
+        deckRepository.deleteById(id);
     }
 }
