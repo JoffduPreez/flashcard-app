@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FlashFocus</title>
-    <link rel="stylesheet" th:href="@{/css/login-register.css}" href="/static/css/login-register.css"/>
+    <link rel="stylesheet" th:href="@{/css/login-register.css}" href="../static/css/login-register.css"/>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
@@ -24,10 +24,9 @@
                     <p>Hey, welcome back!</p>
                 </div>
 
-                <h1 th:if="${param.error}">
-                    Invalid username and password.</h1>
-                <h1 th:if="${param.logout}">
-                    You have been logged out.</h1>
+                <div th:if="${param.error}" class="userFeedback errorMessage">Invalid login details</div>
+                <div th:if="${errorMessage}" th:text="${errorMessage}" class="userFeedback errorMessage"></div>
+                <div th:if="${successMessage}" th:text="${successMessage}" class="userFeedback successMessage"></div>
 
                 <form th:action="@{/login}" method="post">
                     <div class="group">      
@@ -36,7 +35,7 @@
                         <span class="bar"></span>
                         <label>Username</label>
                     </div>
-                        
+
                     <div class="group">
                         <input type="password" name="password" required>
                         <span class="highlight"></span>
@@ -46,7 +45,6 @@
 
                     <input type="submit" value="Login" class="button">
                 </form>
-
             </div>
             <div id="column-2" class="column">
                 <img th:src="@{/images/learning-cropped.png}" alt="Learning image">

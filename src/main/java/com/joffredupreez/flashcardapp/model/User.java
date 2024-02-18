@@ -11,12 +11,14 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String username;
+    private String email;
     private String password;
     private String role;
 
-    public User(String username, String password, String role) {
+    public User(String username, String email, String password, String role) {
         this.username = username;
         this.password = password;
+        this.email = email;
         this.role = role;
     }
 
@@ -56,11 +58,20 @@ public class User {
         this.role = role;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     @Override
     public String toString() {
-        return "SecurityUser{" +
+        return "User{" +
                 "id=" + id +
                 ", username='" + username + '\'' +
+                ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", role='" + role + '\'' +
                 '}';

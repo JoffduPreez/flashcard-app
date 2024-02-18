@@ -24,12 +24,23 @@
                         <p>Hey, welcome to Flash Focus!</p>
                     </div>
 
+                    <div th:if="${param.error}" class="userFeedback errorMessage">Invalid username and password.</div>
+                    <div th:if="${errorMessage}" th:text="${errorMessage}" class="userFeedback errorMessage"></div>
+                    <div th:if="${successMessage}" th:text="${successMessage}" class="userFeedback errorMessage"></div>
+
                     <form th:action="@{/register}" method="post">
                         <div class="group">
                             <input type="text" name="username"required>
                             <span class="highlight"></span>
                             <span class="bar"></span>
                             <label>Username</label>
+                        </div>
+
+                        <div class="group">
+                            <input type="email" name="email"required>
+                            <span class="highlight"></span>
+                            <span class="bar"></span>
+                            <label>Email</label>
                         </div>
 
                         <div class="group">
