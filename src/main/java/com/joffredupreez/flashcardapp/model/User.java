@@ -14,6 +14,8 @@ public class User {
     private String email;
     private String password;
     private String role;
+    private String emailVerificationCode;
+    private boolean emailVerified;
 
     public User(String username, String email, String password, String role) {
         this.username = username;
@@ -66,6 +68,22 @@ public class User {
         this.email = email;
     }
 
+    public String getEmailVerificationCode() {
+        return emailVerificationCode;
+    }
+
+    public void setEmailVerificationCode(String emailVerificationCode) {
+        this.emailVerificationCode = emailVerificationCode;
+    }
+
+    public boolean isEmailVerified() {
+        return emailVerified;
+    }
+
+    public void setEmailVerified(boolean emailVerified) {
+        this.emailVerified = emailVerified;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -74,6 +92,8 @@ public class User {
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", role='" + role + '\'' +
+                ", emailVerificationCode='" + emailVerificationCode + '\'' +
+                ", emailVerified=" + emailVerified +
                 '}';
     }
 }
