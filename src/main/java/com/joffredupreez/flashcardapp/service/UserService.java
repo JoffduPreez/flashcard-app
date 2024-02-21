@@ -7,6 +7,7 @@ import com.joffredupreez.flashcardapp.respository.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
@@ -19,6 +20,9 @@ public class UserService {
     private PasswordEncoder encoder;
 
     private Logger logger = LoggerFactory.getLogger(UserService.class);
+
+    @Autowired
+    private JavaMailSender mailSender;
 
     public void createUser(String username, String email, String password) throws IllegalArgumentException {
         if (username == null || email == null || password == null) {
@@ -40,7 +44,10 @@ public class UserService {
             throw new IllegalArgumentException("Email already exists");
         }
 
-        userRepository.save(new User(username, email, encoder.encode(password), "USER")); // TO-DO: fix hardcoded value for the user role
+        User newUser = new User(username, email, encoder.encode(password), "USER");
+        userRepository.save(newUser); // TO-DO: fix hardcoded value for the user role
+        
+        // sendVerificationEmail(newUser);
     }
 
     public boolean emailValidator(String email) throws IllegalArgumentException {
@@ -50,5 +57,9 @@ public class UserService {
 
         Matcher matcher = emailPattern.matcher(email);
         return matcher.matches();
+    }
+
+    private void sendVerificationEmail(User user, String siteURL) {
+     
     }
 }
