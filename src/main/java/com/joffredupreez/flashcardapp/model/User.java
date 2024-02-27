@@ -1,9 +1,6 @@
 package com.joffredupreez.flashcardapp.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class User {
@@ -17,11 +14,13 @@ public class User {
     private String emailVerificationCode;
     private boolean emailVerified;
 
-    public User(String username, String email, String password, String role) {
+    public User(String username, String email, String password, String role, String emailVerificationCode, boolean emailVerified) {
         this.username = username;
         this.password = password;
         this.email = email;
         this.role = role;
+        this.emailVerificationCode = emailVerificationCode;
+        this.emailVerified = emailVerified;
     }
 
     public User() {

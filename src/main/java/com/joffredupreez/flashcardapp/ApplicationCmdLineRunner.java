@@ -37,6 +37,6 @@ public class ApplicationCmdLineRunner implements CommandLineRunner {
 //        jpaAccess.save(deck3);
 //        log.info("Deck 3 created : " + deck3);
 
-        // userAccess.save(new User("user", "joffre@joffredupreez.com", encoder.encode("pass"), "USER"));
+//         userAccess.save(new User("user", "joffre@joffredupreez.com", encoder.encode("pass"), "USER", "idk", false));
     }
 }
