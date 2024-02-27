@@ -52,8 +52,6 @@ public class UserService {
         }
 
         String emailVerificationCode = generateRandomString(32);
-        logger.info(emailVerificationCode);
-
         User newUser = new User(username, email, encoder.encode(password), "USER", emailVerificationCode, false);
         userRepository.save(newUser); // TO-DO: fix hardcoded value for the user role
         

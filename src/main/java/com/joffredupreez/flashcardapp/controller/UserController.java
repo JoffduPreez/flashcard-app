@@ -56,10 +56,9 @@ public class UserController {
 
             userService.createUser(username, email, formData.getFirst("password"), getSiteURL(request));
             // redirectAttributes.addFlashAttribute("successMessage", "Account created successfully! Please login with your newly created account");
+            redirectAttributes.addFlashAttribute("email", email);
 
-            model.addAttribute("email", email);
-
-            return "redirect:verifyEmail";
+            return "redirect:verify";
         } catch (IllegalArgumentException e) {
             // Handle the exception, e.g., by adding a flash attribute and redirecting back to the registration form
             redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
@@ -69,8 +68,15 @@ public class UserController {
         } catch (UnsupportedEncodingException e) {
             throw new RuntimeException(e);
         }
-
     }
+
+    @RequestMapping(path = "verify", method = RequestMethod.GET)
+    public String loadVerifyPage (Model model) {
+        model.addAttribute("email", model.getAttribute("email"));
+
+        return "verify";
+    }
+
 
     private String getSiteURL(HttpServletRequest request) {
         String siteURL = request.getRequestURL().toString();

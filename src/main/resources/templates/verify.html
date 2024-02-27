@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FlashFocus</title>
-    <link rel="stylesheet" th:href="@{/css/login-register.css}" href="../static/css/login-register.css"/>
+    <link rel="stylesheet" th:href="@{/css/verifyEmail.css}" href="../static/css/login-register.css"/>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
@@ -12,26 +12,19 @@
 </head>
 <body>
     <main>
-        <header>
-            <p class="title">Flash Focus</p>
-        </header>
+        <img th:src="@{/images/email-icon.png}" alt="Email icon">
 
-        <section id="content">
-            <div id="column-1" class="column">
-                <div id="text-content">
-                    <p class="sub-title">Please Verify Your Email</p>
-                </div>
+        <h1>Please Verify Your Email</h1>
 
-                <p>You're almost there! We sent an email to <span th:text="${email}" class="bold"></span></p>
-                <p>Just click on the link in that email to complete your signup. If you don't see it, you may need to <span class="bold">check your spam</span> folder</p>
-                <p>Still can't find the email? No problem./p>
+        <p>You're almost there! We have sent an email to</p>
+        <span th:text="${email}" class="bold"></span>
+        <br>
+        <p>Just click on the link in that email to complete your signup.</p>
+        <p>If you don't see it, you may need to <span class="bold">check your spam</span> folder</p>
+        <br>
+        <p>Still can't find the email? No problem.</p>
 
-                <div id="reVerify" class="button">Resend Verification Email</div>
-            </div>
-            <div id="column-2" class="column">
-                <img th:src="@{/images/learning-cropped.png}" alt="Learning image">
-            </div>
-        </section>
+        <div id="reVerify" class="button">Resend Verification Email</div>
     </main>
 </body>
 </html>
