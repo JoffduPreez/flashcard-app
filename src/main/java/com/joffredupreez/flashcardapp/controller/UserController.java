@@ -56,7 +56,7 @@ public class UserController {
 
             userService.createUser(username, email, formData.getFirst("password"), getSiteURL(request));
             // redirectAttributes.addFlashAttribute("successMessage", "Account created successfully! Please login with your newly created account");
-            redirectAttributes.addFlashAttribute("email", email);
+            request.getSession().setAttribute("email", email);
 
             return "redirect:verify";
         } catch (IllegalArgumentException e) {
@@ -71,8 +71,9 @@ public class UserController {
     }
 
     @RequestMapping(path = "verify", method = RequestMethod.GET)
-    public String loadVerifyPage (Model model) {
-        model.addAttribute("email", model.getAttribute("email"));
+    public String loadVerifyPage (Model model, HttpServletRequest request) {
+        String email = (String) request.getSession().getAttribute("email");
+        model.addAttribute("email", email);
 
         return "verify";
     }
