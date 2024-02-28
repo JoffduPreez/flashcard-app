@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
     <title>FlashFocus</title>
     <link rel="stylesheet" th:href="@{/css/verifyEmail.css}" href="../static/css/login-register.css"/>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -27,4 +29,6 @@
         <div id="reVerify" class="button">Resend Verification Email</div>
     </main>
 </body>
+
+    <script th:src="@{/js/user.js}"></script>
 </html>

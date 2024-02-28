@@ -1,16 +1,23 @@
 package com.joffredupreez.flashcardapp.controller;
 
 import com.joffredupreez.flashcardapp.service.UserService;
+import com.joffredupreez.flashcardapp.model.Deck;
+import com.joffredupreez.flashcardapp.model.User;
+import com.joffredupreez.flashcardapp.respository.UserRepository;
 
 import jakarta.mail.MessagingException;
 import jakarta.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -23,6 +30,9 @@ import static org.springframework.web.util.WebUtils.getRealPath;
 public class UserController {
     @Autowired
     private UserService userService;
+    
+    @Autowired
+    private UserRepository userRepository;
 
     private Logger logger = LoggerFactory.getLogger(UserController.class);
 
@@ -71,11 +81,29 @@ public class UserController {
     }
 
     @RequestMapping(path = "verify", method = RequestMethod.GET)
-    public String loadVerifyPage (Model model, HttpServletRequest request) {
+    public String verifyEmail (Model model, HttpServletRequest request, CsrfToken token) {
         String email = (String) request.getSession().getAttribute("email");
         model.addAttribute("email", email);
+        model.addAttribute("_csrf", token);
 
         return "verify";
+    }
+
+    @RequestMapping(path = "verify", method = RequestMethod.POST)
+    public ResponseEntity<Void> reSendVerificationEmail (Model model, HttpServletRequest request) {
+        try {
+            User user = userRepository.findByEmail((String) request.getSession().getAttribute("email"));
+            logger.info(user.toString());
+            userService.sendVerificationEmail(user, getSiteURL(request));
+        } catch (MessagingException e) {
+            logger.info(null, e);
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        } catch (UnsupportedEncodingException e) {
+            logger.info(null, e);
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
 
@@ -83,7 +111,4 @@ public class UserController {
         String siteURL = request.getRequestURL().toString();
         return siteURL.replace(request.getServletPath(), "");
     }
-
-
-
 }

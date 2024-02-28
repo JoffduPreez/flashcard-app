@@ -55,7 +55,7 @@ public class UserService {
         User newUser = new User(username, email, encoder.encode(password), "USER", emailVerificationCode, false);
         userRepository.save(newUser); // TO-DO: fix hardcoded value for the user role
         
-         sendVerificationEmail(newUser, contextPath);
+        sendVerificationEmail(newUser, contextPath);
     }
 
     public boolean emailValidator(String email) throws IllegalArgumentException {
@@ -67,7 +67,7 @@ public class UserService {
         return matcher.matches();
     }
 
-    private void sendVerificationEmail(User user, String contextPath) throws MessagingException, UnsupportedEncodingException {
+    public void sendVerificationEmail(User user, String contextPath) throws MessagingException, UnsupportedEncodingException {
         String toAddress = user.getEmail();
         String fromAddress = "flashfocusupdates@gmail.com\n";
         String senderName = "Flash Focus";
