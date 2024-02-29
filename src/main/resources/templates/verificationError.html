@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlashFocus</title>
+    <link rel="stylesheet" th:href="@{/css/confirmVerification.css}"/>
+    <script src="https://kit.fontawesome.com/9b0a4deeaf.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Itim&display=swap" rel="stylesheet">
+</head>
+<body>
+    <main>
+        <i class="fa-solid fa-square-xmark fa-3x icon"></i>
+        <h1>Error Verifying Email</h1>
+        <p>There has been an error verifying your email. Please try again</p>
+        <a id="proceedToLogin" class="button" th:href="@{/login}">Back to the Homepage</a>
+    </main>
+</body>
+</html>

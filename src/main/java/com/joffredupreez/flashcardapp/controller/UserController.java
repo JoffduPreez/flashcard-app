@@ -1,10 +1,8 @@
 package com.joffredupreez.flashcardapp.controller;
 
 import com.joffredupreez.flashcardapp.service.UserService;
-import com.joffredupreez.flashcardapp.model.Deck;
 import com.joffredupreez.flashcardapp.model.User;
 import com.joffredupreez.flashcardapp.respository.UserRepository;
-
 import jakarta.mail.MessagingException;
 import jakarta.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
@@ -21,10 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.RequestBody;
-
 import java.io.UnsupportedEncodingException;
-
-import static org.springframework.web.util.WebUtils.getRealPath;
 
 @Controller
 public class UserController {
@@ -68,7 +63,7 @@ public class UserController {
             // redirectAttributes.addFlashAttribute("successMessage", "Account created successfully! Please login with your newly created account");
             request.getSession().setAttribute("email", email);
 
-            return "redirect:verify";
+            return "redirect:verifyEmail";
         } catch (IllegalArgumentException e) {
             // Handle the exception, e.g., by adding a flash attribute and redirecting back to the registration form
             redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
@@ -80,16 +75,26 @@ public class UserController {
         }
     }
 
-    @RequestMapping(path = "verify", method = RequestMethod.GET)
+    @RequestMapping(path = "verifyEmail", method = RequestMethod.GET)
     public String verifyEmail (Model model, HttpServletRequest request, CsrfToken token) {
         String email = (String) request.getSession().getAttribute("email");
         model.addAttribute("email", email);
         model.addAttribute("_csrf", token);
 
-        return "verify";
+        return "verifyEmail";
     }
 
-    @RequestMapping(path = "verify", method = RequestMethod.POST)
+    @RequestMapping(path = "confirmVerification", method = RequestMethod.GET)
+    public String confirmEmailVerification (Model model, HttpServletRequest request, CsrfToken token, @RequestParam String code, @RequestParam String email) {
+        if (!userService.confirmEmailVerification(code, email)) {
+            return "verificationError";
+        }
+
+        return "confirmVerification";
+    }
+
+
+    @RequestMapping(path = "verifyEmail", method = RequestMethod.POST)
     public ResponseEntity<Void> reSendVerificationEmail (Model model, HttpServletRequest request) {
         try {
             User user = userRepository.findByEmail((String) request.getSession().getAttribute("email"));
@@ -105,7 +110,6 @@ public class UserController {
 
         return new ResponseEntity<>(HttpStatus.OK);
     }
-
 
     private String getSiteURL(HttpServletRequest request) {
         String siteURL = request.getRequestURL().toString();

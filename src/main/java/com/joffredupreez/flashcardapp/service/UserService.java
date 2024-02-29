@@ -76,7 +76,7 @@ public class UserService {
                 + "Please click the link below to verify your registration:<br>"
                 + "<h3><a href=\"[[URL]]\" target=\"_self\">VERIFY</a></h3>"
                 + "Thank you,<br>"
-                + "Your company name.";
+                + "Flash Focus.";
 
         MimeMessage message = mailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message);
@@ -86,11 +86,22 @@ public class UserService {
         helper.setSubject(subject);
 
         content = content.replace("[[name]]", user.getUsername());
-        String verifyURL = contextPath + "/verify?code=" + user.getEmailVerificationCode();
+        String verifyURL = contextPath + "/confirmVerification?code=" + user.getEmailVerificationCode() + "&email=" + user.getEmail();
         content = content.replace("[[URL]]", verifyURL);
 
         helper.setText(content, true);
         mailSender.send(message);
+    }
+
+    public boolean confirmEmailVerification (String code, String email) {
+        User user = userRepository.findByEmail(email);
+
+        if (user.getEmailVerificationCode().equals(code)) {
+            user.setEmailVerified(true);
+            userRepository.save(user);
+            return true;
+        }
+        return false;
     }
 
     public String generateRandomString(int length) {
